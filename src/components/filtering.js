@@ -22,11 +22,11 @@ export function initFiltering(elements, indexes) {
         // @todo: #4.2 — обработать очистку поля
         if (action && action.name === 'clear') {
             const input = action.closest('label').querySelector('input');
-            console.log('input.value ', input.value);
             input.value = '';
             state[action.dataset.field] = '';
         }
         // @todo: #4.5 — отфильтровать данные используя компаратор
+        state.total = [state.totalFrom, state.totalTo];
         const compare = createComparison(defaultRules);
         return data.filter(row => compare(row, state));
     }
