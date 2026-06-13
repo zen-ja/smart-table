@@ -56,7 +56,7 @@ async function render(action) {
 const sampleTable = initTable({
     tableTemplate: 'table',
     rowTemplate: 'row',
-    before: ['search', 'header', 'filter'],
+    before: ['filter', 'header', 'search'],
     after: ['pagination']
 }, render);
 
@@ -78,14 +78,8 @@ const applySorting = initSorting([        // Нам нужно передать 
     sampleTable.header.elements.sortByTotal
 ]);
 
-const { applyFiltering, updateIndexes } = initFiltering(sampleTable.filter.elements,
-    // {    // передаём элементы фильтра
-    //     searchBySeller: indexes.sellers                                                     // для элемента с именем searchBySeller устанавливаем массив продавцов
-    // }
-);
+const { applyFiltering, updateIndexes } = initFiltering(sampleTable.filter.elements);
 const applySeraching = initSearching('search');
-
-
 const appRoot = document.querySelector('#app');
 
 appRoot.appendChild(sampleTable.container);
