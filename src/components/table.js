@@ -14,12 +14,14 @@ export function initTable(settings, onAction) {
     // @todo: #1.2 —  вывести дополнительные шаблоны до и после таблицы
     before.forEach(subName => {                             // перебираем нужный массив идентификаторов
         root[subName] = cloneTemplate(subName);             // клонируем и получаем объект, сохраняем в таблице
-        root.container.prepend(root[subName].container);    // добавляем к таблице после (append) или до (prepend)
+        root.container.insertBefore(root[subName].container,                        // вставляем перед rows
+            root.elements.rows
+        );
     });
 
     after.forEach(subName => {                             // перебираем нужный массив идентификаторов
         root[subName] = cloneTemplate(subName);            // клонируем и получаем объект, сохраняем в таблице
-        root.container.append(root[subName].container);    // добавляем к таблице после (append) или до (prepend)
+        root.container.append(root[subName].container);    // добавляем в конец таблицы
     });
 
     // @todo: #1.3 —  обработать события и вызвать onAction()
